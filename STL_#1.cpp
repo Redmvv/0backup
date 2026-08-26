@@ -1,56 +1,33 @@
  #include <bits/stdc++.h>
  using namespace std;
 
+ bool com(const pair<string, int> &a, const pair<string, int> &b) {
+
+  return a.second == b.second ? a.first < b.first : a.second > b.second; 
+
+ }
+
  int main() {
    
-  int q;  
-  deque<int> dq; 
-  string query;
+  int n;  
+  cin >> n; 
 
- cin >> q; 
+  pair<string, int> friends[n]; 
 
-  while (q--) {
+  for (int i = 0 ;i < n; i++) {
 
- query.clear(); 
-  cin >> query;
- 
- if (query == "push_back") {
-
-  int x; 
-  cin >> x;  
-  dq.push_back(x); 
+  cin >> friends[i].first >> friends[i].second; 
 
  }
- 
-  else if (query == "push_front") {
 
-  int x; 
-  cin >> x;  
-  dq.push_front(x); 
+  sort(friends, friends+n ,com);
+
+  
+  for (int i = 0 ;i < n; i++) {
+
+  cout << friends[i].first << ' '<< friends[i].second << '\n'; 
 
  }
- 
-  else if (query == "pop_front")
-    dq.pop_front();
-
-  else if (query == "pop_back")
-   dq.pop_back();
-
-   else if (query == "front")
-   cout << dq.front() << '\n'; 
-
-    else if (query == "back")
-    cout << dq.back() << '\n'; 
-
-    else if (query == "print") {
-
-    int x; 
-    cin >> x;  
-   cout << dq[x-1] << '\n'; 
-
-  }
-  } 
-
 
  return 0;
 
