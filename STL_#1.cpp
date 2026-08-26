@@ -10,14 +10,6 @@
 
  cin >> s >> t;
 
-//  if (s == t) {
-  
-//  cout << "Yes"; 
-//  return 0; 
-
-//  } 
-
-
  for (int i = 0; i < s.size(); ++i) {
 
  str.push_back(s[i]); 
@@ -39,12 +31,7 @@
  }
  } 
 
-
- for (auto it = str.begin(); it < str.end(); ++it)
-
- cout <<  *it ; 
-
- cout <<  (isEqual ? "\nYes" : "\nNo");  
+ cout <<  (isEqual ? "Yes" : "No");  
 
 
  return 0;
