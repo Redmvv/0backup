@@ -1,33 +1,38 @@
  #include <bits/stdc++.h>
  using namespace std;
 
- bool com(const pair<string, int> &a, const pair<string, int> &b) {
-
-  return a.second == b.second ? a.first < b.first : a.second > b.second; 
-
- }
-
  int main() {
    
-  int n;  
-  cin >> n; 
-
-  pair<string, int> friends[n]; 
-
-  for (int i = 0 ;i < n; i++) {
-
-  cin >> friends[i].first >> friends[i].second; 
-
- }
-
-  sort(friends, friends+n ,com);
+  int n, m, s;  
+  cin >> n >> m;
+  
+  vector<int> a(n);
+  vector<int>b(m);
+  vector<int>ans(m);
 
   
-  for (int i = 0 ;i < n; i++) {
+  s = (n > ) 
 
-  cout << friends[i].first << ' '<< friends[i].second << '\n'; 
+  for (int i = 0; i < n; ++i)
+
+  cin >> a[i]; 
+
+
+  for (int i = 0; i < m; ++i) {
+
+  cin >> b[i]; 
 
  }
+
+ 
+  for (int ) {
+
+  
+
+
+ }
+
+
 
  return 0;
 
