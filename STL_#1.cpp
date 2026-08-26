@@ -3,35 +3,53 @@
 
  int main() {
    
- bool isEqual = false; 
- string s, t; 
- deque<char> str; 
- deque<char> ttr; 
+  int q;  
+  deque<int> dq; 
+  string query;
 
- cin >> s >> t;
+ cin >> q; 
 
- for (int i = 0; i < s.size(); ++i) {
+  while (q--) {
 
- str.push_back(s[i]); 
- ttr.push_back(t[i]); 
-
- }
-
-
- for ( auto it = s.rbegin(); it < s.rend(); it++) {
-
- str.push_front(*it); 
- str.pop_back(); 
-
- if (str == ttr)  {
+ query.clear(); 
+  cin >> query;
  
- isEqual = true; 
- break;
+ if (query == "push_back") {
+
+  int x; 
+  cin >> x;  
+  dq.push_back(x); 
 
  }
- } 
+ 
+  else if (query == "push_front") {
 
- cout <<  (isEqual ? "Yes" : "No");  
+  int x; 
+  cin >> x;  
+  dq.push_front(x); 
+
+ }
+ 
+  else if (query == "pop_front")
+    dq.pop_front();
+
+  else if (query == "pop_back")
+   dq.pop_back();
+
+   else if (query == "front")
+   cout << dq.front() << '\n'; 
+
+    else if (query == "back")
+    cout << dq.back() << '\n'; 
+
+    else if (query == "print") {
+
+    int x; 
+    cin >> x;  
+   cout << dq[x-1] << '\n'; 
+
+  }
+  } 
 
 
  return 0;
