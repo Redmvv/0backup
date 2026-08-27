@@ -3,36 +3,43 @@
 
  int main() {
    
-  int n, m, s;  
-  cin >> n >> m;
-  
-  vector<int> a(n);
-  vector<int>b(m);
-  vector<int>ans(m);
-
-  
-  s = (n > ) 
-
-  for (int i = 0; i < n; ++i)
-
-  cin >> a[i]; 
+  int q, x, c, mod; 
+ long long  sum = 0;
+  deque<int> cylinder; 
+  cin >> q;
 
 
-  for (int i = 0; i < m; ++i) {
+    while (q--) {
 
-  cin >> b[i]; 
+    cin >> mod; 
+
+    if (mod == 1) {
+
+    cin >> x >> c; 
+
+    for (int i = 0; i < c; ++i)
+
+    cylinder.push_back(x); 
 
  }
 
+    else if (mod == 2) {
+
+    sum = 0; 
+    cin >> c; 
+
+   for (int i = 0; i < c; ++i) {
  
-  for (int ) {
+  sum += cylinder.front(); 
+  cylinder.pop_front(); 
 
+  }
+
+  cout << sum << '\n'; 
+
+  }
+  }
   
-
-
- }
-
-
 
  return 0;
 
