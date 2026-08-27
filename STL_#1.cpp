@@ -3,47 +3,35 @@
 
  int main() {
    
-  int n, m;  
-  cin >> n >> m;
+  int n;
+  char s;  
+  cin >> n; 
+
+  deque<int> ans(1, 0); 
   
-  vector<int> a(n);
-  vector<pair<int, int>> b(m);
-  vector<int>ans(m);
+  int pos = 0; 
 
-  for (int i = 0; i < n; ++i)
+ for (int i = 1; i <= n; ++i) {
 
-  cin >> a[i]; 
+ cin >> s; 
 
+  if (s == 'L')  {
 
-  for (int i = 0; i < m; ++i) {
-
-  cin >> b[i].first;
-  b[i].second = i;  
+  ans.insert(ans.begin() + pos, i);
 
  }
 
- sort(a.begin(), a.end());
- sort(b.begin(), b.end()); 
+  else if (s == 'R') {
 
-
- int j = 0; 
- 
- for (int i = 0; i < m; ++i) {
-
-  while (a[j] <= b[i].first && j < n) {
-  j++; 
+ ans.insert( ans.begin() + pos + 1 , i);
+ pos++;
 
  }
-
-  ans[b[i].second] = j; 
-
  }
+  
+ for (auto &it : ans)
 
-
- for (int i = 0; i < m; ++i ) 
-
- cout << ans[i] << ' '; 
-
+ cout << it << ' '; 
 
  return 0;
 
