@@ -3,43 +3,47 @@
 
  int main() {
    
-  int q, x, c, mod; 
- long long  sum = 0;
-  deque<int> cylinder; 
-  cin >> q;
+  int n, m;  
+  cin >> n >> m;
+  
+  vector<int> a(n);
+  vector<pair<int, int>> b(m);
+  vector<int>ans(m);
+
+  for (int i = 0; i < n; ++i)
+
+  cin >> a[i]; 
 
 
-    while (q--) {
+  for (int i = 0; i < m; ++i) {
 
-    cin >> mod; 
-
-    if (mod == 1) {
-
-    cin >> x >> c; 
-
-    for (int i = 0; i < c; ++i)
-
-    cylinder.push_back(x); 
+  cin >> b[i].first;
+  b[i].second = i;  
 
  }
 
-    else if (mod == 2) {
+ sort(a.begin(), a.end());
+ sort(b.begin(), b.end()); 
 
-    sum = 0; 
-    cin >> c; 
 
-   for (int i = 0; i < c; ++i) {
+ int j = 0; 
  
-  sum += cylinder.front(); 
-  cylinder.pop_front(); 
+ for (int i = 0; i < m; ++i) {
 
-  }
+  while (a[j] <= b[i].first && j < n) {
+  j++; 
 
-  cout << sum << '\n'; 
+ }
 
-  }
-  }
-  
+  ans[b[i].second] = j; 
+
+ }
+
+
+ for (int i = 0; i < m; ++i ) 
+
+ cout << ans[i] << ' '; 
+
 
  return 0;
 
