@@ -1,32 +1,43 @@
  #include <bits/stdc++.h>
  using namespace std;
 
-// h
-
  int main() { 
 
- int n, q, x;
- cin >> n >> q; 
+ int n;
+ int jSum = 0, dSum = 0;
+ bool turnJ = true;
+
+ cin >> n; 
  
- vector<int> nums(n); 
+ deque<int> cards(n); 
 
-  for (int i = 0; i < n; ++i) {
+  for (int i = 0; i < n; i++) {
 
-  cin >> nums[i];
+  cin >> cards[i];
 
   }
 
-  sort(nums.begin(), nums.end()); 
-  nums.erase(unique(nums.begin(), nums.end()), nums.end()); 
- 
-  while (q--) {
+  while (!cards.empty()) {
 
-  cin >> x; 
-  int greater = nums.end() - upper_bound(nums.begin(), nums.end(), x); 
-  int less = lower_bound(nums.begin(), nums.end(), x) - nums.begin(); 
-  cout << less << ' ' << greater << '\n'; 
+  if (cards.front() >= cards.back()) {
+
+ (turnJ ? jSum += cards.front() : dSum += cards.front());
+  cards.pop_front(); 
 
   }
+
+  else {
+  
+  (turnJ ? jSum += cards.back() : dSum += cards.back());
+  cards.pop_back(); 
+
+  } 
+
+  turnJ = !turnJ;
+
+  } 
+
+  cout << jSum << ' ' << dSum; 
 
   return 0; 
 
