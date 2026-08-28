@@ -1,43 +1,54 @@
  #include <bits/stdc++.h>
  using namespace std;
 
+ struct frined  {
+
+  string name;   
+  int arabic; 
+  int math; 
+  int science;
+  int engish; 
+  int total = 0; 
+
+ };
+ 
+  bool com(const frined &a, const frined &b) {
+
+  return ( a.total ==  b.total ?  a.name < b.name : a.total > b.total); 
+
+ } 
+
  int main() { 
 
- int n;
- int jSum = 0, dSum = 0;
- bool turnJ = true;
+  int n; 
+  cin >> n; 
 
- cin >> n; 
- 
- deque<int> cards(n); 
-
-  for (int i = 0; i < n; i++) {
-
-  cin >> cards[i];
-
-  }
-
-  while (!cards.empty()) {
-
-  if (cards.front() >= cards.back()) {
-
- (turnJ ? jSum += cards.front() : dSum += cards.front());
-  cards.pop_front(); 
-
-  }
-
-  else {
+  vector<frined> frineds(n);
   
-  (turnJ ? jSum += cards.back() : dSum += cards.back());
-  cards.pop_back(); 
+  for (int i = 0; i < n; ++i) {
 
-  } 
+  cin >> frineds[i].name; 
+  cin >> frineds[i].arabic;
+  cin >> frineds[i].math;
+  cin >> frineds[i].science;
+  cin >> frineds[i].engish;
 
-  turnJ = !turnJ;
+  frineds[i].total += frineds[i].arabic; 
+  frineds[i].total += frineds[i].math; 
+  frineds[i].total += frineds[i].science; 
+  frineds[i].total += frineds[i].engish; 
 
-  } 
+ }
 
-  cout << jSum << ' ' << dSum; 
+ sort(frineds.begin(), frineds.end(), com); 
+
+  for (auto &it : frineds)  {
+
+ cout << it.name << ' ' << it.total << ' '; 
+ cout << it.arabic << ' ' << it.math << ' ';
+ cout << it.science << ' ' << it.engish << '\n';
+
+ }
 
   return 0; 
 
