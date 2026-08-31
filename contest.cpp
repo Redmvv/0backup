@@ -1,31 +1,30 @@
  #include <bits/stdc++.h>
  using namespace std;
 
- int main() {
+  int main() {
 
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
-     
- int64_t t; 
- cin >> t; 
+  
+  int k; 
+  string s;
+  cin >> s >> k;
 
- while (t--) {
+  sort(s.begin(), s.end()); 
 
- int64_t a, b, c, d; 
+  vector<string> per; 
+  per.reserve(s.size()); 
 
- cin >> a >> b >> c >> d;
-
- int64_t r = min(b, d); 
- int64_t l = max(a, c); 
- 
- if ( l <= r) 
-
-  cout <<  r - l  << '\n';
-
- else cout << 0 << '\n'; 
+ do {
+   
+  per.push_back(s); 
 
  } 
- 
+
+  while (next_permutation(s.begin(), s.end())); 
+
+  cout << per[k-1]; 
+  
  return 0; 
 
 
