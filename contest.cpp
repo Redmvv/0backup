@@ -6,46 +6,39 @@
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
  
- int n, q, x;  
- cin >> n >> q;
- 
-  vector<int> idx(51, -1); 
+ int t; 
+ cin >> t; 
 
- for (int i = 1; i <= n; ++i) {
+ while (t--) {
 
- cin >> x; 
+ stack<char> op; 
+ stack<char> en; 
 
-  if (idx[x] == -1)  {
+ int n; 
+ char c; 
+ cin >> n;
 
-  idx[x] = i; 
+ while (n--)  {
 
-  }
-  }
-  
+ cin >> c; 
 
- while (q--) {
+  if (c == '(') 
+  op.push(c);
 
-  cin >> x;
+ else {
    
-  cout << idx[x] << ' ';
-
-  int pos = idx[x]; 
+  if (!op.empty()) 
+  op.pop();
   
-  for (int i = 1; i <= 50; ++i) {
-   
-  if (i != x && idx[i] != -1 && idx[i] < pos)
-    
-  idx[i]++;   
-      
-  }
-    
-  idx[x] = 1; 
- 
+ else en.push(c);
+
  }
+ } 
 
+ cout << op.size() << '\n'; 
 
+ } 
 
  return 0; 
  
   } 
-  
