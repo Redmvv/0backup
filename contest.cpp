@@ -22,7 +22,6 @@
   }
   }
   
-  cout << "---> " << idx[1] << '\n'; 
 
  while (q--) {
 
@@ -30,25 +29,17 @@
    
   cout << idx[x] << ' ';
 
-  if (x == 1)  {
-
-    idx[x] = 1;
-    continue;
-
-  }
-
-  int pos = idx[x]-1; 
+  int pos = idx[x]; 
   
-  for (int i = pos; i >= 1; --i) {
+  for (int i = 1; i <= 50; ++i) {
    
+  if (i != x && idx[i] != -1 && idx[i] < pos)
     
-   if (idx[i] != -1) 
-
-    idx[i]++;   
+  idx[i]++;   
       
-    }
+  }
     
-    idx[x] = 1; 
+  idx[x] = 1; 
  
  }
 
@@ -57,3 +48,4 @@
  return 0; 
  
   } 
+  
