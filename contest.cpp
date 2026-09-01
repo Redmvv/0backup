@@ -6,50 +6,58 @@
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
  
-  int n; 
-  cin >> n;
+  int x, q, mod;  
+  long long c;
+  cin >> q;
   
-  deque<pair<int, int>> dq(n); 
-  vector<pair<int, int>> ans; 
-  pair<int, int> c = {-1, -1};
-
-  for (int i = 0; i < n; ++i) {
-
-  cin >> dq[i].first >> dq[i].second; 
-
-  }
-
-  sort(dq.begin(), dq.end()); 
-
-  c = dq[0]; 
-
-  for (int i = 1; i < dq.size(); ++i) {
-
- int l = max(c.first, dq[i].first); 
- int r = min(c.second, dq[i].second); 
-
- if (l <= r)  {
-
- c.first = min(c.first, dq[i].first); 
- c.second = max(c.second, dq[i].second); 
+  deque<pair<long long ,long long>> dq; 
  
+ while (q--) {
+
+ cin >> mod; 
+ 
+ if (mod == 1)  {
+
+ cin >> x >> c; 
+
+  dq.push_back({x, c});  
+
+ }
+
+ else if (mod == 2 ) {
+
+ cin >> c; 
+
+  long long sum = 0; 
+ long long  balls = 0; 
+
+  while ( c > balls) {
+
+  int remaining = c - balls;
+
+ if (dq.front().second <= remaining) {
+
+ sum += dq.front().first * dq.front().second;
+ balls += dq.front().second; 
+ dq.pop_front(); 
+
  }
 
  else {
 
- ans.push_back(c); 
- c = dq[i]; 
+ sum += dq.front().first * remaining; 
+ balls += remaining; 
+ dq.front().second -= remaining;
 
  }
  }
 
- ans.push_back(c); 
+ cout << sum << '\n';
 
- for (int i = 0;i < ans.size(); ++i)
+ } 
+ } 
 
- cout << ans[i].first << ' '  << ans[i].second << '\n'; 
-
+  
  return 0; 
-
-
-} 
+ 
+  } 
