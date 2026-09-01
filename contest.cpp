@@ -6,58 +6,47 @@
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
  
-  int x, q, mod;  
-  long long c;
-  cin >> q;
+  int n, x, max = 0;
+  bool valid = true; 
+  cin >> n; 
   
-  deque<pair<long long ,long long>> dq; 
+  stack<int> st; 
  
- while (q--) {
+ while (n--) {
 
- cin >> mod; 
- 
- if (mod == 1)  {
+ cin >> x; 
 
- cin >> x >> c; 
+ if (x > max) { 
 
-  dq.push_back({x, c});  
+ for (int i = max + 1; i < x; ++i){
 
+    st.push(i);
+
+  }
+
+    max = x; 
  }
 
- else if (mod == 2 ) {
-
- cin >> c; 
-
-  long long sum = 0; 
- long long  balls = 0; 
-
-  while ( c > balls) {
-
-  int remaining = c - balls;
-
- if (dq.front().second <= remaining) {
-
- sum += dq.front().first * dq.front().second;
- balls += dq.front().second; 
- dq.pop_front(); 
-
- }
 
  else {
 
- sum += dq.front().first * remaining; 
- balls += remaining; 
- dq.front().second -= remaining;
+  if (st.top() == x)
 
- }
- }
+  st.pop(); 
 
- cout << sum << '\n';
+  else {
+
+    valid = false; 
+    break;
+
+  }
+  }
 
  } 
- } 
-
   
+  cout << (valid ? "YES" : "NO"); 
+ 
+
  return 0; 
  
   } 
