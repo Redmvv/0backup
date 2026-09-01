@@ -11,31 +11,52 @@
 
  while (t--) {
 
- stack<char> op; 
+ queue<char> op; 
  stack<char> en; 
 
- int n; 
- char c; 
- cin >> n;
+ int sum = 0; 
+ string s; 
+ cin >> s;
 
- while (n--)  {
+  for (char c : s )  {
 
- cin >> c; 
-
-  if (c == '(') 
+  if (c == '(' || c == '[') 
   op.push(c);
 
- else {
-   
-  if (!op.empty()) 
-  op.pop();
+ else if (c == ')') {
+
+ if (!op.empty()) {
+
+  if (op.front() == '(') {
+
+  op.pop(); 
+  sum++;
+
+ }   
+
+ else en.push(c); 
+
+ }
+
+ }
   
- else en.push(c);
+
+ else if (c == ']') {
+
+ if (!op.empty()) {
+
+  if (op.front() == '[')  
+  op.pop(); 
+  sum++;
+
+ }
+ 
+ else en.push(c); 
 
  }
  } 
 
- cout << op.size() << '\n'; 
+ cout << sum << '\n'; 
 
  } 
 
