@@ -6,94 +6,53 @@
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
  
- int n, m; 
+ int n, q, x;  
+ cin >> n >> q;
  
- cin >> n >> m; 
+  vector<int> idx(51, -1); 
 
- vector<queue<int>> cy(m+1);  
- vector<array<int, 3>> freq(n+1, {0, -1 , -1});  
- queue<pair<int, int>> q; 
+ for (int i = 1; i <= n; ++i) {
 
- for (int i = 1; i <= m; ++i) {
+ cin >> x; 
 
-  int k, x; 
-  cin >> k; 
+  if (idx[x] == -1)  {
 
-  for (int j = 0; j < k; ++j) {
+  idx[x] = i; 
 
-  cin >> x; 
-  cy[i].push(x); 
+  }
+  }
+  
+  cout << "---> " << idx[1] << '\n'; 
+
+ while (q--) {
+
+  cin >> x;
+   
+  cout << idx[x] << ' ';
+
+  if (x == 1)  {
+
+    idx[x] = 1;
+    continue;
 
   }
 
-  freq[cy[i].front()][0]++;
-
- if (freq[cy[i].front()][0] == 2) 
-
-  freq[cy[i].front()][2] = i; 
+  int pos = idx[x]-1; 
+  
+  for (int i = pos; i >= 1; --i) {
    
-  else freq[cy[i].front()][1] = i;
+    
+   if (idx[i] != -1) 
 
-  if (freq[cy[i].front()][0] == 2)  
-
-  q.push({freq[cy[i].front()][1], freq[cy[i].front()][2]}); 
-
-  } 
-
-  while (!q.empty()) {
-
-  auto [i, j] = q.front(); 
-  q.pop(); 
-
-  cy[i].pop();  
-  cy[j].pop();  
-
-  if (!cy[i].empty()) {
-
-  freq[cy[i].front()][0]++;
-
- if (freq[cy[i].front()][0] == 2) 
-
-  freq[cy[i].front()][2] = i; 
-   
-  else freq[cy[i].front()][1] = i;
-
-  if (freq[cy[i].front()][0] == 2)  
-
-  q.push({freq[cy[i].front()][1], freq[cy[i].front()][2]}); 
-
-  }
-
- if (!cy[j].empty()) {
-
-  freq[cy[j].front()][0]++;
-
- if (freq[cy[j].front()][0] == 2) 
-
-  freq[cy[j].front()][2] = j; 
-   
-  else freq[cy[j].front()][1] = j;
-
-  if (freq[cy[j].front()][0] == 2)  
-
-  q.push({freq[cy[j].front()][1], freq[cy[j].front()][2]}); 
-
-  }
-
+    idx[i]++;   
+      
+    }
+    
+    idx[x] = 1; 
+ 
  }
 
- bool valid = true; 
 
- for (int i = 1; i <= m; ++i) 
-
- if (!cy[i].empty()) {
- 
- valid = false; 
- break;
-
- }
-
-  cout << (valid ? "Yes\n" : "No\n"); 
 
  return 0; 
  
