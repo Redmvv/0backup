@@ -6,32 +6,37 @@
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
-  int n;
-  map<string, int> mgs; 
-  set<pair<int, string>> names; 
-  string name; 
+ int n; 
+ cin >> n; 
+ string old , neew; 
 
-  cin >> n;
+ map<string, string> users; 
+
+  while (n--) {
+
+  cin >> old >> neew;
+
+  auto it = users.find(old); 
+
+  if (it != users.end()) {
   
-  for (int i = 1; i <= n; ++i) {
+  auto val = it->second; 
+  users.erase(old);
+  users[neew] = val; 
 
-  cin >> name;
+  }
+      
+ else 
+    users[neew] = old; 
 
-  mgs[name] = i; 
-  
   }
 
-  for (auto it = mgs.begin(); it != mgs.end(); ++it) {
+ cout << users.size() <<'\n'; 
 
-  names.insert({it->second, it->first}); 
+ for (auto [i, j] : users) 
 
-  }
+ cout << j << ' ' << i << '\n'; 
 
-  for (auto it = names.rbegin(); it != names.rend(); ++it) {
-
-  cout << it->second << '\n';
-
- }
 
     return 0;
-} 
+}
