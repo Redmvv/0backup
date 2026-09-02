@@ -14,52 +14,38 @@
  queue<char> op; 
  stack<char> en; 
 
- int sum = 0; 
+ int round = 0, square = 0, ans = 0;
  string s; 
  cin >> s;
 
   for (char c : s )  {
 
-  if (c == '(' || c == '[') 
-  op.push(c);
+  if (c == '(') 
+  round++;
+  
+ if  ( c == '[') 
+  square++;
 
- else if (c == ')') {
 
- if (!op.empty()) {
+ else if (c == ')' && round > 0) {
 
-  if (op.front() == '(') {
-
-  op.pop(); 
-  sum++;
-
- }   
-
- else en.push(c); 
+ round--; 
+ ans++; 
 
  }
+
+ else if (c == ']' && square > 0) {
+
+ square--; 
+ ans++; 
+
+ }
+ }
+
+ cout << ans << '\n'; 
 
  }
   
-
- else if (c == ']') {
-
- if (!op.empty()) {
-
-  if (op.front() == '[')  
-  op.pop(); 
-  sum++;
-
- }
- 
- else en.push(c); 
-
- }
- } 
-
- cout << sum << '\n'; 
-
- } 
-
  return 0; 
  
-  } 
+  }
