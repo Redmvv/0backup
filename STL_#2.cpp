@@ -6,50 +6,76 @@
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
- int n;
- string word;
- string seen;
- set<string> obj; 
+ int n, m, k, x, b;
+ int cnt = 0; 
+ cin >> n >> m >> k; 
+
+ vector<pair<int, int>> app(n); 
+ map<pair<int, int>, bool> apart; 
  
- cin >> n; 
  
-  while (n--) {
+  for (int i = 0; i < n; ++i) {
 
-  bool valid = true;
-  map<char, bool> letters; 
+    cin >> x;
 
-    cin >> word; 
-   
-    for (auto l : word) {
+    int l = x - k; 
+    int r = x + k; 
+    app[i] = {l, r}; 
 
-    if (letters[l]) {
+    } 
 
-    valid = false;    
-    break;
 
+ while (m--) {
+
+ cin >> b;
+ 
+  int l = b - k; 
+  int r = b + k; 
+  apart[{l, r}]; 
+ 
  }
-    letters[l] = 1; 
 
-    }
+ 
+ 
+ for (auto [l, r] : app) {
 
- if (valid) obj.insert(word); 
+    auto it = apart.find({l, r});
 
-   if (obj.size() > 1) {
-
-  auto x = obj.begin();  
-
-  if ( x->size() == word.size()) {
-
- bool is_per = is_permutation(x->begin(), x->end(), word.begin());
-
-  if (is_per) obj.erase(word); 
-
-   }
-   } 
+    if (it == apart.end()) continue;
     
- }
+    if(it->second) continue;
 
- cout << obj.size() << '\n'; 
+    else  {
+    
+    it->second = 1; 
+    cnt++;
+  }
 
-    return 0;
-}
+ } 
+
+ cout << "count = " << cnt << '\n'; 
+
+ cout << "\n============\n";
+  
+  for (auto [i, j] : app) {
+
+ cout << i << ' ' << j << '\n'; 
+
+  }
+  
+  cout << "\n============\n";
+
+
+  for (auto [i, j] : apart) {
+
+ cout << i.first << ' ' << i.second << " --> " << j << '\n'; 
+
+  }
+
+  cout << apart.size() << '\n'; 
+
+
+  return 0;
+
+
+ } 
