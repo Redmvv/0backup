@@ -6,37 +6,50 @@
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
- int n; 
+ int n;
+ string word;
+ string seen;
+ set<string> obj; 
+ 
  cin >> n; 
- string old , neew; 
-
- map<string, string> users; 
-
+ 
   while (n--) {
 
-  cin >> old >> neew;
+  bool valid = true;
+  map<char, bool> letters; 
 
-  auto it = users.find(old); 
+    cin >> word; 
+   
+    for (auto l : word) {
 
-  if (it != users.end()) {
-  
-  auto val = it->second; 
-  users.erase(old);
-  users[neew] = val; 
+    if (letters[l]) {
 
-  }
-      
- else 
-    users[neew] = old; 
+    valid = false;    
+    break;
 
-  }
+ }
+    letters[l] = 1; 
 
- cout << users.size() <<'\n'; 
+    }
 
- for (auto [i, j] : users) 
+ if (valid) obj.insert(word); 
 
- cout << j << ' ' << i << '\n'; 
+   if (obj.size() > 1) {
 
+  auto x = obj.begin();  
+
+  if ( x->size() == word.size()) {
+
+ bool is_per = is_permutation(x->begin(), x->end(), word.begin());
+
+  if (is_per) obj.erase(word); 
+
+   }
+   } 
+    
+ }
+
+ cout << obj.size() << '\n'; 
 
     return 0;
 }
