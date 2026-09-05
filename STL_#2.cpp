@@ -1,68 +1,56 @@
- #include <bits/stdc++.h>
- using namespace std;
+  #include <bits/stdc++.h>
+  using namespace std;
 
- int main() {
-
+  int main() {
+ 
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
-  int q;
-  bool rev = false; 
-  string qr; 
-  cin >> q;
+  int t;
+  cin >> t; 
 
-  deque<int> ad; 
-
-  while (q--) {
-
-  cin >> qr; 
-
-  if (qr == "push_back") {
-
-  int n;   
+  while (t--) {
+  
+  int n; 
   cin >> n;
-  rev ? ad.push_front(n) : ad.push_back(n); 
 
-  }
+  vector<int> s(n); 
 
-  else if (qr == "toFront") {
+  for (int i = 0; i < n; ++i)  {
 
-  int n;   
-  cin >> n;
-  rev ? ad.push_back(n) : ad.push_front(n); 
-
-  }
-
-  else if (qr == "back") {
-
-  if (ad.empty()) cout << "No job for Ada?\n";  
-
- else {
-
-  cout << ( rev ? ad.front() : ad.back() )<< '\n';
-  rev ? ad.pop_front() : ad.pop_back();
-
- }
- }
-
-  else if (qr == "front") {
-
- if (ad.empty()) cout << "No job for Ada?\n"; 
-
- else {
+ cin >> s[i]; 
  
-  cout << (rev ? ad.back() : ad.front()) << '\n';
-  rev ? ad.pop_back() : ad.pop_front();
+ }
 
+  if (n > 1 )  {
+ 
+  int sum = 0, pair_sum = 0;  
+
+  for (int i = 0; i < n; ++i) {
+
+  for (int j = i+1; j < n; ++j) {
+
+  if(s[i] != s[j])
+  sum++; 
+
+  else pair_sum++; 
+ 
  }
  }
 
- else if (qr == "reverse")
+ if (sum == 0) cout << 1 << '\n'; 
 
-  rev = !rev; 
+ else {
+  
+  cout << (pair_sum > 0 ? sum + 1 : sum) << '\n';
+   
+ } 
+ }
 
-  } 
+ else if (n == 1) cout << 0 << '\n';
 
+ }
+ 
   return 0;
 
  } 
