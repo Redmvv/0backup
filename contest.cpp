@@ -1,51 +1,32 @@
- #include <bits/stdc++.h>
- using namespace std;
+// #include <bits/stdc++.h>
+// using namespace std;
 
-  int main() {
+// int main() {
+//     ios::sync_with_stdio(false);
+//     cin.tie(nullptr);
 
-  ios::sync_with_stdio(false);
-  cin.tie(nullptr);
- 
- int t; 
- cin >> t; 
+//     int n;
+//     cin >> n;
 
- while (t--) {
+//     set<int> objects;
 
- queue<char> op; 
- stack<char> en; 
+//     while (n--) {
+//         string s;
+//         cin >> s;
 
- int round = 0, square = 0, ans = 0;
- string s; 
- cin >> s;
+//         int mask = 0;
 
-  for (char c : s )  {
+//         for (char c : s) {
+            
+//             mask |= (1 << (c - 'a'));
+//         }
 
-  if (c == '(') 
-  round++;
-  
- if  ( c == '[') 
-  square++;
+//         objects.insert(mask);
+//     }
+
+//     cout << objects.size() << '\n';
+
+//     return 0;
+// }
 
 
- else if (c == ')' && round > 0) {
-
- round--; 
- ans++; 
-
- }
-
- else if (c == ']' && square > 0) {
-
- square--; 
- ans++; 
-
- }
- }
-
- cout << ans << '\n'; 
-
- }
-  
- return 0; 
- 
-  }
