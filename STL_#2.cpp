@@ -6,37 +6,61 @@
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
-  int n;
-  string name; 
+  int q;
+  bool rev = false; 
+  string qr; 
+  cin >> q;
+
+  deque<int> ad; 
+
+  while (q--) {
+
+  cin >> qr; 
+
+  if (qr == "push_back") {
+
+  int n;   
   cin >> n;
-
-  map<string, int> m; 
-
-  while (n--) {
-
-  cin >> name; 
-
-  auto it = m.find(name); 
-
- if (it != m.end()) {
-
-  string new_name = name;
-  string num = to_string(m[name]);  
-  new_name += num; 
-  m[name]++; 
-
-  m[new_name] = 1; 
-
- cout << new_name << '\n'; 
+  rev ? ad.push_front(n) : ad.push_back(n); 
 
   }
 
-  else {
+  else if (qr == "toFront") {
 
-  m[name] = 1; 
-  cout << "OK\n"; 
+  int n;   
+  cin >> n;
+  rev ? ad.push_back(n) : ad.push_front(n); 
+
+  }
+
+  else if (qr == "back") {
+
+  if (ad.empty()) cout << "No job for Ada?\n";  
+
+ else {
+
+  cout << ( rev ? ad.front() : ad.back() )<< '\n';
+  rev ? ad.pop_front() : ad.pop_back();
+
+ }
+ }
+
+  else if (qr == "front") {
+
+ if (ad.empty()) cout << "No job for Ada?\n"; 
+
+ else {
  
-  }
+  cout << (rev ? ad.back() : ad.front()) << '\n';
+  rev ? ad.pop_back() : ad.pop_front();
+
+ }
+ }
+
+ else if (qr == "reverse")
+
+  rev = !rev; 
+
   } 
 
   return 0;
