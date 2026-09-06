@@ -6,46 +6,33 @@
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
-  int n;
-  string name; 
-  cin >> n;
+   int n; 
+   cin >> n;
 
-  map<string, int> m; 
+  vector<pair<int , int>> v(n); 
 
-  while (n--) {
+  for (int i = 0; i < n; ++i) {
 
-  cin >> name; 
+  cin >> v[i].second >> v[i].first;
+  
+  } 
 
-  auto it = m.find(name); 
-
- if (it != m.end()) {
-
-  string new_name = name;
-  int number = m[name]; 
-  string num = to_string(number);  
-  new_name += num; 
-
-  while (m.find(new_name) != m.end()) {
- 
-  number++;
-  string num = to_string(number);
-  new_name = name + num; 
-
-  }
-
-   m[name] = number + 1;
-   m[new_name] = 1; 
-   cout << new_name << '\n'; 
+   sort(v.begin(), v.end()); 
    
+   auto w = v[0];  
+   int sum = 1; 
+  
+   for (int i = 1; i < n; ++i) {
+
+   if (w.first <= v[i].second) {
+
+   sum++;
+   w = v[i]; 
+
+   }
    }
 
-  else {
-
-  m[name] = 1; 
-  cout << "OK\n"; 
- 
-  }
-  } 
+   cout << sum << '\n'; 
 
   return 0;
 
