@@ -1,55 +1,70 @@
-  #include <bits/stdc++.h>
-  using namespace std;
+   #include <bits/stdc++.h>
+   using namespace std;
 
-  int main() {
+   int main() {
  
-  ios::sync_with_stdio(false);
-  cin.tie(nullptr);
+   ios::sync_with_stdio(false);
+   cin.tie(nullptr); 
 
-  int t;
-  cin >> t; 
+  int q;
+  bool sorted = false;
+  cin >> q; 
 
-  while (t--) {
+  deque<int> a; 
+  priority_queue<int, vector<int>, greater<int>> pa; 
+
+  while (q--) {
   
-  int n; 
+  int n, front; 
   cin >> n;
 
-  vector<int> s(n); 
+  if (n == 1) {
 
-  for (int i = 0; i < n; ++i)  {
+  int x; 
+  cin >> x;
+  a.push_back(x); 
 
- cin >> s[i]; 
- 
- }
+  } 
 
-  if (n > 1 )  {
- 
-  int sum = 0, pair_sum = 0;  
+ else if (n == 2) {
 
-  for (int i = 0; i < n; ++i) {
 
-  for (int j = i+1; j < n; ++j) {
+  if (sorted && !pa.empty())  {
+  
+  cout << pa.top() << '\n'; 
+  pa.pop();
 
-  if(s[i] != s[j])
-  sum++; 
-
-  else pair_sum++; 
- 
- }
- }
-
- if (sum == 0) cout << 1 << '\n'; 
+ } 
 
  else {
+
+   cout << a.front() << '\n';
+   a.pop_front();
+
+ }
+
+ }
+ 
+  else if (n == 3)  {
+
+  sorted = true;
+
+  if (pa.empty()) {
+
+  pa = priority_queue<int, vector<int>, greater<int>>(a.begin(), a.end());
+  a.clear();
+
+  }
+
+  else  while (!a.empty()) {
   
-  cout << (pair_sum > 0 ? sum + 1 : sum) << '\n';
-   
- } 
- }
+  pa.push(a.front());
+  a.pop_front(); 
 
- else if (n == 1) cout << 0 << '\n';
+  }
 
- }
+  }
+  }
  
   return 0;
 
