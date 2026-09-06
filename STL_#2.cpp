@@ -1,71 +1,52 @@
-   #include <bits/stdc++.h>
-   using namespace std;
+ #include <bits/stdc++.h>
+ using namespace std;
 
-   int main() {
- 
-   ios::sync_with_stdio(false);
-   cin.tie(nullptr); 
+ int main() {
 
-  int q;
-  bool sorted = false;
-  cin >> q; 
+  ios::sync_with_stdio(false);
+  cin.tie(nullptr);
 
-  deque<int> a; 
-  priority_queue<int, vector<int>, greater<int>> pa; 
-
-  while (q--) {
-  
-  int n, front; 
+  int n;
+  string name; 
   cin >> n;
 
-  if (n == 1) {
+  map<string, int> m; 
 
-  int x; 
-  cin >> x;
-  a.push_back(x); 
+  while (n--) {
 
+  cin >> name; 
+
+  auto it = m.find(name); 
+
+ if (it != m.end()) {
+
+  string new_name = name;
+  int number = m[name]; 
+  string num = to_string(number);  
+  new_name += num; 
+
+  while (m.find(new_name) != m.end()) {
+ 
+  number++;
+  string num = to_string(number);
+  new_name = name + num; 
+
+  }
+
+   m[name] = number + 1;
+   m[new_name] = 1; 
+   cout << new_name << '\n'; 
+   
+   }
+
+  else {
+
+  m[name] = 1; 
+  cout << "OK\n"; 
+ 
+  }
   } 
 
- else if (n == 2) {
-
-
-  if (sorted && !pa.empty())  {
-  
-  cout << pa.top() << '\n'; 
-  pa.pop();
-
- } 
-
- else {
-
-   cout << a.front() << '\n';
-   a.pop_front();
-
- }
-
- }
- 
-  else if (n == 3)  {
-
-  sorted = true;
-
-  if (pa.empty()) {
-
-  pa = priority_queue<int, vector<int>, greater<int>>(a.begin(), a.end());
-  a.clear();
-
-  }
-
-  else  while (!a.empty()) {
-  
-  pa.push(a.front());
-  a.pop_front(); 
-
-  }
-
-  }
-  }
- 
   return 0;
 
  } 
