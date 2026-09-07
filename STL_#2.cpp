@@ -6,33 +6,37 @@
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
-   int n; 
+   int n, x; 
    cin >> n;
 
-  vector<pair<int , int>> v(n); 
+  multiset<int> t; 
 
   for (int i = 0; i < n; ++i) {
 
-  cin >> v[i].second >> v[i].first;
-  
+   cin >> x; 
+
+   if (!t.empty())  {
+
+  auto it = t.upper_bound(x);
+
+  if (it != t.end()) { 
+
+  t.erase(it);
+  t.insert(x);
+
+  }
+
+  else t.insert(x); 
+
+   }
+   
+ else t.insert(x); 
+
   } 
 
-   sort(v.begin(), v.end()); 
-   
-   auto w = v[0];  
-   int sum = 1; 
-  
-   for (int i = 1; i < n; ++i) {
 
-   if (w.first <= v[i].second) {
+  cout << t.size(); 
 
-   sum++;
-   w = v[i]; 
-
-   }
-   }
-
-   cout << sum << '\n'; 
 
   return 0;
 
