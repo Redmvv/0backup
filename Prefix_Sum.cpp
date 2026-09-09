@@ -1,54 +1,49 @@
   #include <bits/stdc++.h>
   using namespace std;
 
- long long fix(int x, int mod) {
-
-  return ((x % mod) + mod) % mod; 
-
- }
-
   int main() { 
 
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
- int n; 
- cin >> n; 
+  int n, q; 
+ cin >> n >> q; 
 
- long long p[n+1] = {}; 
-
-  for (int i = 1; i <= n; ++i) {
-
-  cin >> p[i]; 
-  p[i] += p[i - 1]; 
-  p[i] = fix(p[i], n); 
- 
-
- }
-
-
- 
-  for (int i = 1; i <= n; ++i) {
-
- cout << p[i] << ' '; 
-
-  }
-
+  long long p[n+2] = {}; 
   
-  map<long long, long long> mp;
+ for (int i = 1; i <= n; ++i) {
+
+  cin >> p[i];
+
+ }
+
+  long long par[n+2] = {}; 
+
+ while (q--) {
+
+  long long l, r, val;  
+
+ cin >> l >> r >> val;
  
- long long ans = 0; 
-
- for (int i = 0; i <= n; ++i) {
-
-  ans += mp[p[i]]; 
-  mp[p[i]]++;
-
+ par[l] += val; 
+ par[r + 1] -= val; 
 
  }
 
 
- cout << ans; 
+   
+ for (int i = 1; i <= n; ++i) {
+
+  par[i] += par[i - 1];
+
+ }
+
+
+ for (int i = 1; i <= n; ++i) {
+
+  cout << p[i] + par[i] << ' ';
+
+ }
 
 
  return 0; 
