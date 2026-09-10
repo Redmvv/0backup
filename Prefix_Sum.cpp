@@ -6,47 +6,25 @@
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
-  int n, q; 
- cin >> n >> q; 
+  int n, l, r, k; 
+  cin >> n >> l >> r >> k;
 
-  long long p[n+2] = {}; 
+  vector<long long> p(n+1);  
   
- for (int i = 1; i <= n; ++i) {
 
-  cin >> p[i];
+  for (int i = 1; i <= n; ++i) {
 
- }
+  cin >> p[i];  
+  p[i] = p[i-1] + p[i];
 
-  long long par[n+2] = {}; 
+  }
 
- while (q--) {
+ int sub = p[r] - p[l-1]; 
+ int diff = r - l ; 
 
-  long long l, r, val;  
-
- cin >> l >> r >> val;
- 
- par[l] += val; 
- par[r + 1] -= val; 
-
- }
+ cout << (p[n] -  sub) +  (diff * k); 
 
 
-   
- for (int i = 1; i <= n; ++i) {
-
-  par[i] += par[i - 1];
-
- }
-
-
- for (int i = 1; i <= n; ++i) {
-
-  cout << p[i] + par[i] << ' ';
-
- }
-
-
- return 0; 
-
+ return 0;
 
  } 
